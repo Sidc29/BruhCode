@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   description:
     "Your go-to platform for coding queries and collaboration. Join a vibrant community, ask questions, and share your expertise. Powered by Next.js for seamless browsing",
   icons: {
-    icon: "../../public/assets/images/site-logo.svg",
+    icon: "/assets/images/site-logo.svg",
   },
 };
 
