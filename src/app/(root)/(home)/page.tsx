@@ -6,71 +6,11 @@ import { HomePageFilters } from "@/constants/filters";
 import HomeFilters from "@/components/home/HomeFilters";
 import NoResults from "@/components/shared/no-results/NoResults";
 import QuestionCard from "@/components/cards/QuestionCard";
+import { getQuestions } from "@/lib/actions/question.action";
 
-const questions = [
-  {
-    _id: "1",
-    title:
-      "Best practices for data fetching in a Next.js application with Server-Side Rendering (SSR)?",
-    tags: [
-      {
-        _id: "1",
-        name: "next",
-      },
-      {
-        _id: "2",
-        name: "ssr",
-      },
-    ],
-    author: {
-      _id: "1",
-      name: "John Doe",
-      picture: "url_to_picture",
-    },
-    upvotes: 10,
-    views: 100,
-    answers: [
-      {
-        // Define the structure of answers if needed
-      },
-    ],
-    createdAt: new Date("2021-09-01T12:00:00.000Z"),
-  },
-  {
-    _id: "2",
-    title:
-      "How to implement authentication in a React application using Firebase?",
-    tags: [
-      {
-        _id: "3",
-        name: "react",
-      },
-      {
-        _id: "4",
-        name: "firebase",
-      },
-      {
-        _id: "5",
-        name: "authentication",
-      },
-    ],
-    author: {
-      _id: "2",
-      name: "Jane Smith",
-      picture: "url_to_picture",
-    },
-    upvotes: 15,
-    views: 200,
-    answers: [
-      {
-        // Define the structure of answers if needed
-      },
-    ],
-    createdAt: new Date("2021-10-15T10:30:00.000Z"),
-  },
-];
+export default async function Home() {
+  const result = await getQuestions({});
 
-const Home = () => {
   return (
     <>
       <div className="flex w-full flex-col-reverse justify-between gap-4 sm:flex-row sm:items-center">
@@ -99,8 +39,8 @@ const Home = () => {
       <HomeFilters />
 
       <div className="mt-10 flex w-full flex-col gap-6">
-        {questions.length > 0 ? (
-          questions.map((question) => {
+        {result.questions.length > 0 ? (
+          result.questions.map((question) => {
             return (
               <QuestionCard
                 key={question._id}
@@ -128,6 +68,4 @@ const Home = () => {
       </div>
     </>
   );
-};
-
-export default Home;
+}
