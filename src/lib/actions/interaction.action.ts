@@ -13,8 +13,7 @@ export async function viewQuestion(params: ViewQuestionParams) {
     const { questionId, userId } = params;
 
     // update view count
-    await Question.findByIdAndUpdate(questionId, { $inc: { views: 0.5 } }); //using 0.5 as the component is rendering 2 times
-
+    await Question.findByIdAndUpdate(questionId, { $inc: { views: 1 } });
     if (userId) {
       const existingInteraction = await Interaction.findOne({
         user: userId,
