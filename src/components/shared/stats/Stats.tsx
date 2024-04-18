@@ -53,7 +53,7 @@ const Stats = ({ totalQuestions, totalAnswers }: Props) => {
         <StatsCard
           imgURL="/assets/icons/silver-medal.svg"
           value={0}
-          title="silver Bage"
+          title="Silver Bage"
         />
         <StatsCard
           imgURL="/assets/icons/bronze-medal.svg"

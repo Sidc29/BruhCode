@@ -119,6 +119,7 @@ const Question = ({ mongoUserId }: Props) => {
               </FormLabel>
               <FormControl className="mt-3.5">
                 <Input
+                  placeholder="Shoot your question..."
                   className="no-focus paragraph-regular background-light900_dark300 light-border-2 text-dark300_light700 min-h-[56px] border"
                   {...field}
                 />
