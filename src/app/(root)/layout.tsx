@@ -2,7 +2,6 @@ import React from "react";
 import Navbar from "@/components/shared/navbar/Navbar";
 import LeftSidebar from "@/components/shared/left-sidebar/LeftSidebar";
 import RightSidebar from "@/components/shared/right-sidebar/RightSidebar";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const Layout = ({ children }: { children: React.ReactNode }) => {
   return (
@@ -16,7 +15,6 @@ const Layout = ({ children }: { children: React.ReactNode }) => {
         <RightSidebar />
       </div>
       {/* Toaster */}
-      <SpeedInsights />
     </main>
   );
 };

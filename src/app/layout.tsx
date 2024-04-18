@@ -4,6 +4,7 @@ import { Metadata } from "next";
 import "./globals.css";
 import "../../styles/prism.css";
 import { ThemeProvider } from "@/context/ThemeProvider";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 export const metadata: Metadata = {
   title: "BruhCode",
@@ -44,6 +45,7 @@ export default function RootLayout({
         >
           <ThemeProvider>{children}</ThemeProvider>
         </ClerkProvider>
+        <SpeedInsights />
       </body>
     </html>
   );
