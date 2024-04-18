@@ -10,7 +10,7 @@ import { getJoinedDate } from "@/lib/utils";
 import ProfileLink from "@/components/shared/profile-link/ProfileLink";
 import Stats from "@/components/shared/stats/Stats";
 import QuestionTab from "@/components/shared/tabs/QuestionTab";
-import AnswerTab from "@/components/shared/tabs/AnswerTab";
+import AnswerTab from "@/components/shared/tabs/AnswersTab";
 
 const ProfileDetails = async ({ params, searchParams }: URLProps) => {
   const { userId: clerkId } = auth();
@@ -82,14 +82,26 @@ const ProfileDetails = async ({ params, searchParams }: URLProps) => {
         <Tabs defaultValue="top-posts" className="flex-1">
           <TabsList className="background-light800_dark400 min-h-[42px p-1]">
             <TabsTrigger value="top-posts" className="tab">
-              <QuestionTab />
+              Top Posts
             </TabsTrigger>
             <TabsTrigger value="answers" className="tab">
-              <AnswerTab />
+              Answers
             </TabsTrigger>
           </TabsList>
-          <TabsContent value="top-posts">POSTS</TabsContent>
-          <TabsContent value="answers">ANSWERS</TabsContent>
+          <TabsContent value="top-posts">
+            <QuestionTab
+              searchParams={searchParams}
+              userId={userInfo?.user._id}
+              clerkId={clerkId}
+            />
+          </TabsContent>
+          <TabsContent value="answers">
+            <AnswerTab
+              searchParams={searchParams}
+              userId={userInfo?.user._id}
+              clerkId={clerkId}
+            />
+          </TabsContent>
         </Tabs>
       </div>
     </>
