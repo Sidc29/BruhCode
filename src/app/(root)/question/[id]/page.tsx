@@ -64,7 +64,6 @@ const QuestionDetails = async ({ params, searchParams }: any) => {
           imgURL="/assets/icons/clock.svg"
           alt="clock icon"
           value={`asked ${getTimeStamp(result.createdAt)}`}
-          title="Asked"
           textStyles="small-medium text-dark400_light800"
         />
         <Metric

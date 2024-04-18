@@ -6,7 +6,7 @@ interface MetricProps {
   imgURL: string;
   alt: string;
   value: string | number;
-  title: string;
+  title?: string;
   href?: string;
   textStyles?: string;
   isAuthor?: boolean;
@@ -38,7 +38,7 @@ const Metric = ({
             isAuthor ? "max-sm:hidden" : ""
           }`}
         >
-          {title}
+          {title ? title : ""}
         </span>
       </p>
     </>
