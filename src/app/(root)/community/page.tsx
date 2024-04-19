@@ -8,8 +8,10 @@ import { getAllUsers } from "@/lib/actions/user.action";
 import Link from "next/link";
 import UserCard from "@/components/cards/UserCard";
 
-const Community = async () => {
-  const result: any = await getAllUsers({});
+const Community = async ({ searchParams }: any) => {
+  const result: any = await getAllUsers({
+    searchQuery: searchParams.q,
+  });
 
   return (
     <>

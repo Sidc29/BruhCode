@@ -6,8 +6,8 @@ import { getAllTags } from "@/lib/actions/tag.action";
 import Link from "next/link";
 import NoResults from "@/components/shared/no-results/NoResults";
 
-const Tags = async () => {
-  const result: any = await getAllTags({});
+const Tags = async ({ searchParams }: any) => {
+  const result: any = await getAllTags({ searchQuery: searchParams.q });
 
   return (
     <>
