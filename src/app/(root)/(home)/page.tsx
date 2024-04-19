@@ -7,10 +7,12 @@ import HomeFilters from "@/components/home/HomeFilters";
 import NoResults from "@/components/shared/no-results/NoResults";
 import QuestionCard from "@/components/cards/QuestionCard";
 import { getQuestions } from "@/lib/actions/question.action";
+import Pagination from "@/components/shared/pagination/page";
 export default async function Home({ searchParams }: any) {
   const result = await getQuestions({
     searchQuery: searchParams.q,
     filter: searchParams.filter,
+    page: searchParams.page ? +searchParams.page : 1,
   });
 
   return (
@@ -67,6 +69,12 @@ export default async function Home({ searchParams }: any) {
             linkTitle="Ask Question"
           />
         )}
+      </div>
+      <div className="mt-10">
+        <Pagination
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNext}
+        />
       </div>
     </>
   );
