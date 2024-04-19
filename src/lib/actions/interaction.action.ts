@@ -7,7 +7,6 @@ import { ViewQuestionParams } from "./shared.types";
 
 export async function viewQuestion(params: ViewQuestionParams) {
   try {
-    console.log("viewQuestion called"); // Add this line
     connectToDatabase();
 
     const { questionId, userId } = params;

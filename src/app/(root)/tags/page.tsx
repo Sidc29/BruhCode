@@ -9,8 +9,6 @@ import NoResults from "@/components/shared/no-results/NoResults";
 const Tags = async () => {
   const result: any = await getAllTags({});
 
-  console.log(result);
-
   return (
     <>
       <h1 className="h1-bold text-dark100_light900">All Tags</h1>
