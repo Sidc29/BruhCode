@@ -10,6 +10,7 @@ import { getQuestions } from "@/lib/actions/question.action";
 export default async function Home({ searchParams }: any) {
   const result = await getQuestions({
     searchQuery: searchParams.q,
+    filter: searchParams.filter,
   });
 
   return (

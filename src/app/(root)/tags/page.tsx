@@ -1,5 +1,5 @@
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
-import { UserFilters } from "@/constants/filters";
+import { TagFilters } from "@/constants/filters";
 import Filter from "@/components/shared/filter/Filter";
 import React from "react";
 import { getAllTags } from "@/lib/actions/tag.action";
@@ -7,7 +7,10 @@ import Link from "next/link";
 import NoResults from "@/components/shared/no-results/NoResults";
 
 const Tags = async ({ searchParams }: any) => {
-  const result: any = await getAllTags({ searchQuery: searchParams.q });
+  const result: any = await getAllTags({
+    searchQuery: searchParams.q,
+    filter: searchParams.filter,
+  });
 
   return (
     <>
@@ -22,12 +25,12 @@ const Tags = async ({ searchParams }: any) => {
           otherClasses="flex-1"
         />
         <Filter
-          filters={UserFilters}
+          filters={TagFilters}
           otherClasses="min-h-[56] sm:min-w-[170px]"
         />
       </div>
       <section className="mt-12 flex flex-wrap gap-4">
-        {result.tags.length > 0 ? (
+        {result?.tags.length > 0 ? (
           result.tags.map((tag: any) => (
             <div>
               <Link

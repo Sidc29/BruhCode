@@ -11,6 +11,7 @@ import UserCard from "@/components/cards/UserCard";
 const Community = async ({ searchParams }: any) => {
   const result: any = await getAllUsers({
     searchQuery: searchParams.q,
+    filter: searchParams.filter,
   });
 
   return (

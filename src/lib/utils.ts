@@ -8,31 +8,31 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 export const getTimeStamp = (createdAt: Date): string => {
-  const now = new Date();
-  const diffInSeconds: number = Math.floor(
-    (now.getTime() - createdAt.getTime()) / 1000
-  );
+  const now: Date = new Date();
+  const timeDifference: number = now.getTime() - createdAt.getTime();
 
-  if (diffInSeconds < 60) {
-    return `${diffInSeconds} second${diffInSeconds === 1 ? "" : "s"} ago`;
-  } else if (diffInSeconds < 3600) {
-    const diffInMinutes: number = Math.floor(diffInSeconds / 60);
-    return `${diffInMinutes} minute${diffInMinutes === 1 ? "" : "s"} ago`;
-  } else if (diffInSeconds < 86400) {
-    const diffInHours: number = Math.floor(diffInSeconds / 3600);
-    return `${diffInHours} hour${diffInHours === 1 ? "" : "s"} ago`;
-  } else if (diffInSeconds < 604800) {
-    // Less than a week (7 days)
-    const diffInDays: number = Math.floor(diffInSeconds / 86400);
-    return `${diffInDays} day${diffInDays === 1 ? "" : "s"} ago`;
-  } else if (diffInSeconds < 31536000) {
-    // Less than a year (365 days)
-    const diffInWeeks: number = Math.floor(diffInSeconds / 604800);
-    return `${diffInWeeks} week${diffInWeeks === 1 ? "" : "s"} ago`;
-  } else {
-    const diffInYears: number = Math.floor(diffInSeconds / 31536000);
-    return `${diffInYears} year${diffInYears === 1 ? "" : "s"} ago`;
+  // Define time intervals in milliseconds
+  const timeUnits: {
+    unit: string;
+    milliseconds: number;
+  }[] = [
+    { unit: "year", milliseconds: 365 * 24 * 60 * 60 * 1000 },
+    { unit: "month", milliseconds: 30 * 24 * 60 * 60 * 1000 },
+    { unit: "week", milliseconds: 7 * 24 * 60 * 60 * 1000 },
+    { unit: "day", milliseconds: 24 * 60 * 60 * 1000 },
+    { unit: "hour", milliseconds: 60 * 60 * 1000 },
+    { unit: "minute", milliseconds: 60 * 1000 },
+    { unit: "second", milliseconds: 1000 },
+  ];
+
+  for (const { unit, milliseconds } of timeUnits) {
+    const time: number = Math.floor(timeDifference / milliseconds);
+    if (time >= 1) {
+      return `${time} ${unit}${time === 1 ? "s" : ""} ago`;
+    }
   }
+
+  return "Just now";
 };
 
 export const formatNumber = (number: number): string => {
