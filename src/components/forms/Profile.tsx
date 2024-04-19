@@ -73,7 +73,7 @@ const Profile = ({ clerkId, user }: Props) => {
     <Form {...form}>
       <form
         onSubmit={form.handleSubmit(onSubmit)}
-        className="mt-9 flex flex-col w-full gap-2"
+        className="mt-9 flex flex-col w-full gap-9"
       >
         <FormField
           control={form.control}
