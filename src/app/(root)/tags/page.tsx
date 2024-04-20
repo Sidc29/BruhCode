@@ -5,11 +5,13 @@ import React from "react";
 import { getAllTags } from "@/lib/actions/tag.action";
 import Link from "next/link";
 import NoResults from "@/components/shared/no-results/NoResults";
+import Pagination from "@/components/shared/pagination/page";
 
 const Tags = async ({ searchParams }: any) => {
   const result: any = await getAllTags({
     searchQuery: searchParams.q,
     filter: searchParams.filter,
+    page: searchParams.page ? +searchParams.page : 1,
   });
 
   return (
@@ -63,6 +65,12 @@ const Tags = async ({ searchParams }: any) => {
           />
         )}
       </section>
+      <div className="mt-10">
+        <Pagination
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNext}
+        />
+      </div>
     </>
   );
 };

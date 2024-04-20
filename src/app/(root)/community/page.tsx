@@ -1,17 +1,17 @@
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
-// import { Button } from "@/components/ui/button";
 import { UserFilters } from "@/constants/filters";
-// import Link from "next/link";
 import Filter from "@/components/shared/filter/Filter";
 import React from "react";
 import { getAllUsers } from "@/lib/actions/user.action";
 import Link from "next/link";
 import UserCard from "@/components/cards/UserCard";
+import Pagination from "@/components/shared/pagination/page";
 
 const Community = async ({ searchParams }: any) => {
   const result: any = await getAllUsers({
     searchQuery: searchParams.q,
     filter: searchParams.filter,
+    page: searchParams.page ? +searchParams.page : 1,
   });
 
   return (
@@ -47,6 +47,12 @@ const Community = async ({ searchParams }: any) => {
           </div>
         )}
       </section>
+      <div className="mt-10">
+        <Pagination
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNext}
+        />
+      </div>
     </>
   );
 };

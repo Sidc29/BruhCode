@@ -5,16 +5,18 @@ import NoResults from "@/components/shared/no-results/NoResults";
 import QuestionCard from "@/components/cards/QuestionCard";
 import { getSavedQuestions } from "@/lib/actions/user.action";
 import { auth } from "@clerk/nextjs";
+import Pagination from "@/components/shared/pagination/page";
 
 export default async function Collection({ searchParams }: any) {
   const { userId } = auth();
 
   if (!userId) return null;
 
-  const result = await getSavedQuestions({
+  const result: any = await getSavedQuestions({
     clerkId: userId,
     searchQuery: searchParams.q,
     filter: searchParams.filter,
+    page: searchParams.page ? +searchParams.page : 1,
   });
 
   return (
@@ -62,6 +64,12 @@ export default async function Collection({ searchParams }: any) {
             linkTitle="Ask Question"
           />
         )}
+      </div>
+      <div className="mt-10">
+        <Pagination
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNext}
+        />
       </div>
     </>
   );

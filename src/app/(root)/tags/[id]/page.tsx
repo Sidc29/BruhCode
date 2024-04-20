@@ -1,5 +1,6 @@
 import QuestionCard from "@/components/cards/QuestionCard";
 import NoResults from "@/components/shared/no-results/NoResults";
+import Pagination from "@/components/shared/pagination/page";
 import LocalSearchbar from "@/components/shared/search/LocalSearchbar";
 import { IQuestion } from "@/database/question.model";
 import { getQuestionsByTagId } from "@/lib/actions/tag.action";
@@ -8,8 +9,7 @@ import React from "react";
 const TagDetails = async ({ params, searchParams }: URLProps) => {
   const result: any = await getQuestionsByTagId({
     tagId: params.id,
-    page: 1,
-    searchQuery: searchParams.q,
+    page: searchParams.page ? +searchParams.page : 1,
   });
 
   return (
@@ -53,6 +53,12 @@ const TagDetails = async ({ params, searchParams }: URLProps) => {
             linkTitle="Ask Question"
           />
         )}
+      </div>
+      <div className="mt-10">
+        <Pagination
+          pageNumber={searchParams?.page ? +searchParams.page : 1}
+          isNext={result.isNext}
+        />
       </div>
     </>
   );
